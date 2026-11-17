@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private Transform leftBottom;
     [SerializeField] private Transform rightTop;
     [SerializeField] private Transform playerTransform;
-    [SerializeField] private float playerDistance = 1f;
+    [SerializeField] private float spawnDistanceFromPlayer = 1f;
 
     private int score = 0;
 
@@ -23,8 +23,10 @@ public class GameController : MonoBehaviour
     private void SpawnEnemy()
     {
         Vector2 pos = GetRandomPos();
-        //GetRandomPos until in boundaries and in distance from player
-        while ((pos-(Vector2)playerTransform.position).sqrMagnitude < playerDistance*playerDistance || !spawnArea.OverlapPoint(pos))
+        
+        //GetRandomPos until in area boundaries and in distance from player
+        float distanceFromPlayer = (pos - (Vector2)playerTransform.position).sqrMagnitude;
+        while (distanceFromPlayer < spawnDistanceFromPlayer*spawnDistanceFromPlayer || !spawnArea.OverlapPoint(pos))
             pos = GetRandomPos();
         
         var enemy = Instantiate(enemyPrefab, pos, Quaternion.identity);
