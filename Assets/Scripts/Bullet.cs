@@ -16,6 +16,12 @@ public class Bullet : MonoBehaviour
         direction = dir;
         rgbd.AddForce(direction*velocity, ForceMode2D.Impulse);
     }
+
+    public void ApplyGravityFieldForce(Vector2 fieldPosition, float force)
+    {
+        rgbd.AddForce((fieldPosition-(Vector2)transform.position).normalized * (force * velocity));
+        rgbd.linearVelocity = rgbd.linearVelocity.normalized * velocity;
+    }
     
     private void Update()
     {
@@ -30,7 +36,6 @@ public class Bullet : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
-
 
     private void OnCollisionEnter2D(Collision2D other)
     {
