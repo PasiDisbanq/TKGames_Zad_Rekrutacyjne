@@ -109,7 +109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   collider: {fileID: 8735645167082477447}
   rgbd: {fileID: 9045707929532377006}
-  velocity: 2
+  velocity: 4
   maxBounces: 2
 --- !u!60 &8735645167082477447
 PolygonCollider2D:

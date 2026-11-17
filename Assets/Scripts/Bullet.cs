@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private Rigidbody2D rgbd;
     [SerializeField] private float velocity = 1f;
     [SerializeField] private int maxBounces = 2;
+    [SerializeField] private float damage = 1f;
 
     private Vector2 direction = Vector2.zero;
     private int bouncesNumber = 0;
@@ -39,6 +40,12 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            other.gameObject.GetComponent<Enemy>().DealDamage(damage);
+            Die();
+        }
+        
         if (other.gameObject.layer == LayerMask.NameToLayer("Wall"))
             bouncesNumber++;
     }
