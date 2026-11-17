@@ -21,13 +21,7 @@ public class GravityField : MonoBehaviour
         
         transform.position = cursor.GetCursorPosition;
         List<Bullet> bullets = GetAllBullets();
-        ApplyGravityForceToAllBullets(bullets);   
-    }
-
-    private void ApplyGravityForceToAllBullets(List<Bullet> bullets)
-    {
-        foreach(var i in bullets)
-            i.ApplyGravityFieldForce(transform.position, force);
+        bullets.ForEach(x => x.ApplyGravityFieldForce(transform.position, force));
     }
 
     List<Bullet> GetAllBullets()
