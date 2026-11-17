@@ -10,10 +10,10 @@ public class MovementInputController : MonoBehaviour
 
     private void Update()
     {
-       HandleMovement(); 
+       HandleInput(); 
     }
 
-    private void HandleMovement()
+    private void HandleInput()
     {
         dir = Vector2.zero;
 
